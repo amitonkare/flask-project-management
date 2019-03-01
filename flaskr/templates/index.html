@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Project Management</title>
+{% endblock %}
+
+{% block content %}
+	{% if name %}
+		<h1 class="text-center">Hello!</h1>
+		<p class="text-center">Manage your Projects with us.</p>
+		<p class="text-center"><a href="{{ url_for('project.list') }}">View You Projects</a></p>
+	{% else %}
+		<h1 class="text-center">Hello, World!</h1>
+	{% endif %}
+{% endblock %}

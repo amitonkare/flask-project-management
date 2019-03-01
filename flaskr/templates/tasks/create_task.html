@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Create Task</title>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-6 mx-auto">
+		<h4 class="text-center">Create Task for project {{project.name}}</h4>
+		{% from "_formhelpers.html" import render_field %}
+		<form method=post>
+			<dl>
+				{{ render_field(form.title) }}
+				{{ render_field(form.description) }}
+				{{ render_field(form.project_id) }}
+			</dl>
+			{% if not edit %}
+				<p><input type=submit value=Create /></p>
+			{% else %}
+				<p><input type=submit value=Update /></p>
+			{% endif %}
+		</form>
+	</div>
+</div>
+{% endblock %}

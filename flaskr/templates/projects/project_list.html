@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Projects List</title>
+{% endblock %}
+
+{% block content %}
+	<h3 class="text-center mt-5">All Projects</h3>
+	<div class="row">
+		<div class="col-lg-9 mx-auto mt-5">
+			<div class="row my-3 mx-3">
+				<div class="col-3">
+					<a href="{{ url_for('project.create') }}" class="float-left" title="Create">Create <i class="fas fa-plus"></i></a>
+				</div>
+			</div>
+			{% if projects %}
+				<div class="row">
+					{% for project in projects %}
+						<div class="card mx-5 mt-4">
+							<div class="card-header">
+								<span class="float-left">Project Id: {{project.id}}</span>
+								<a href="{{ url_for('project.tlist', project_id=project.id) }}" class="float-right" title="Tasks"><i class="fas fa-tasks"></i></a>
+								<a href="{{ url_for('project.delete', project_id=project.id) }}" class="float-right mr-3" title="Delete"><i class="far fa-trash-alt"></i></a>
+								<a href="{{ url_for('project.edit', project_id=project.id) }}" class="float-right mr-3" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+							</div>
+							<ul class="list-group list-group-flush">
+									<li class="list-group-item">{{project.name}}</li>
+								<li class="list-group-item">{{project.client}}</li>
+								<li class="list-group-item">{{project.technology}}</li>
+								<li class="list-group-item">{{project.status}}</li>
+							</ul>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<h1 class="text-center">No projects.</h1>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
